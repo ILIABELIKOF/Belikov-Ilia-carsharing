@@ -1,2 +1,2 @@
 # Belikov-Ilia-carsharing
-for demo ex
+for demo exam preparing
