@@ -8,49 +8,31 @@
         Title="Авторизация" Height="580" Width="900" >
 
 
-    <Grid>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="780"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Text="Авторизация"  FontSize="24" HorizontalAlignment="Center" Margin="80,0,0,20"
+                                  Foreground="Aqua" FontWeight="Black" Width="200" Height="30"/>
+                        <TextBlock Text="Логин:" Margin="50,0,0,5" HorizontalAlignment="Center" FontSize="20"/>
+                                    <TextBox x:Name="txtUsername" Height="30" Width="250" Margin="50,0,0,5" Background="Aquamarine"/>
 
+                        <TextBlock Text="Пароль:" Margin="50,0,0,5" HorizontalAlignment="Center" FontSize="20"/>
+                        <PasswordBox x:Name="txtPassword" Height="30" Width="250" Margin="50,0,0,5" Background="LightGreen"/>
 
-        <Border Margin="0,10,10,0" Padding="30" VerticalAlignment="Top" Height="416">
-            <StackPanel>
-                <TextBlock Text="Авторизация "  FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,20"
-                      Foreground="Aqua" FontWeight="Black" FontFamily=" "/>
-
-                <Border Padding="15" Margin="0,10" Height="229">
-                    <StackPanel>
-                        <TextBlock Text="Логин:" Margin="0,0,0,5"/>
-                        <TextBox x:Name="txtUsername" Height="30" Margin="0,0,0,15"/>
-
-                        <TextBlock Text="Пароль:" Margin="0,0,0,5"/>
-                        <PasswordBox x:Name="txtPassword" Height="30" Margin="0,0,0,20"/>
-
-                        <Button x:Name="LoginButton" Content="ВОЙТИ" Height="35" Click="LoginButton_Click"
-                           FontSize="14" IsDefault="True"/>
-
-
-
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </Border>
-
-        <Border Margin="0,450,0,0" VerticalAlignment="Top" Height="114" RenderTransformOrigin="0.5,0.5">
-            <Border.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Border.RenderTransform>
-
-
-
-
-
-
-        </Border>
-
-
+                        <Button x:Name="LoginButton" Content="ВОЙТИ" Height="30" Width="130" Background="Black" Foreground="White"
+                           FontSize="14" IsDefault="True" Margin="50,10,0,5" Click="LoginButton_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="50, 0, 0, 0">
+            <TextBlock Text="Введите капчу" HorizontalAlignment="Center" FontSize="15"/>
+        </StackPanel>
+        <Button Grid.Column="1" Grid.Row="2" Content="API" Height="20" Width="45" Margin="0, 200, 150, 0" Click="Button_Click" FontStretch="Normal"  Foreground="WhiteSmoke" Background="DarkGray"/>
     </Grid>
 </Window>
