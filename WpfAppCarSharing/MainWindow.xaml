@@ -5,34 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppCarSharing"
         mc:Ignorable="d"
-        Title="Авторизация" Height="580" Width="900" >
+        Title="Авторизация" Height="450" Width="800" Background="Azure">
 
 
     <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="780"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel>
-            <TextBlock Text="Авторизация"  FontSize="24" HorizontalAlignment="Center" Margin="80,0,0,20"
-                                  Foreground="Aqua" FontWeight="Black" Width="200" Height="30"/>
-                        <TextBlock Text="Логин:" Margin="50,0,0,5" HorizontalAlignment="Center" FontSize="20"/>
-                                    <TextBox x:Name="txtUsername" Height="30" Width="250" Margin="50,0,0,5" Background="Aquamarine"/>
-
-                        <TextBlock Text="Пароль:" Margin="50,0,0,5" HorizontalAlignment="Center" FontSize="20"/>
-                        <PasswordBox x:Name="txtPassword" Height="30" Width="250" Margin="50,0,0,5" Background="LightGreen"/>
-
-                        <Button x:Name="LoginButton" Content="ВОЙТИ" Height="30" Width="130" Background="Black" Foreground="White"
-                           FontSize="14" IsDefault="True" Margin="50,10,0,5" Click="LoginButton_Click"/>
+       
+       
+        <StackPanel  Margin="110,110,110,110"  >
+            <TextBlock Text="Пройдите Captcha" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"/>
+            <Image  Height="45" Width="150" />
+            <TextBox  x:Name="Captcha" HorizontalAlignment="Center" Height="25" Width="150" BorderBrush="Gray" Background="AliceBlue" 
+                      VerticalAlignment="Bottom" Margin="0,20,0,10"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Margin="50, 0, 0, 0">
-            <TextBlock Text="Введите капчу" HorizontalAlignment="Center" FontSize="15"/>
-        </StackPanel>
-        <Button Grid.Column="1" Grid.Row="2" Content="API" Height="20" Width="45" Margin="0, 200, 150, 0" Click="Button_Click" FontStretch="Normal"  Foreground="WhiteSmoke" Background="DarkGray"/>
+
+
     </Grid>
 </Window>

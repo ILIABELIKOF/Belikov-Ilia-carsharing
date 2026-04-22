@@ -16,30 +16,18 @@ using System.Windows.Shapes;
 namespace WpfAppCarSharing
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for API_Page.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class API_Page : Page
     {
-        public MainWindow()
+        public API_Page()
         {
             InitializeComponent();
-            
-            
-           
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
-
-    //private void LoginButton_Click(object sender, RoutedEventArgs e)
-    //{
-
-    //}
-
-    //private void Api_Button_Click(object sender, RoutedEventArgs e)
-    //{
-            
-    //}
-
 }
-    
-
