@@ -8,16 +8,10 @@
         Title="Авторизация" Height="450" Width="800" Background="Azure">
 
 
-    <Grid Margin="20">
-       
-       
-        <StackPanel  Margin="110,110,110,110"  >
-            <TextBlock Text="Пройдите Captcha" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"/>
-            <Image  Height="45" Width="150" />
-            <TextBox  x:Name="Captcha" HorizontalAlignment="Center" Height="25" Width="150" BorderBrush="Gray" Background="AliceBlue" 
-                      VerticalAlignment="Bottom" Margin="0,20,0,10"/>
-        </StackPanel>
 
 
-    </Grid>
+        <Frame  Name="MainFrm"  />
+       
+
+   
 </Window>

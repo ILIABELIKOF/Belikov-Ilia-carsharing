@@ -23,23 +23,12 @@ namespace WpfAppCarSharing
         public MainWindow()
         {
             InitializeComponent();
-            
-            
+            PageNavigator.frm = MainFrm;
+            PageNavigator.frm.Navigate(new AUTH_Page());
            
         }
 
     }
-
-    //private void LoginButton_Click(object sender, RoutedEventArgs e)
-    //{
-
-    //}
-
-    //private void Api_Button_Click(object sender, RoutedEventArgs e)
-    //{
-            
-    //}
-
 }
     
 
