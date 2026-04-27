@@ -5,13 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppCarSharing"
         mc:Ignorable="d"
-        Title="Авторизация" Height="450" Width="800" Background="Azure">
+        Title="" Height="450" Width="800" Background="Azure">
 
 
+        <Frame  Name="MainFrm"/>
 
-
-        <Frame  Name="MainFrm"  />
-       
-
-   
 </Window>
