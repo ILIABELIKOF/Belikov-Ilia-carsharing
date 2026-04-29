@@ -118,9 +118,9 @@ namespace WpfAppCarSharing
 
         private void CheckPuzzle()
         {
-            //var expectedImageOrder = new int[] { 2, 1, 3, 4 };
+            var expectedImageOrder = new int[] { 2, 1, 3, 4 };
             if (PuzzleGrid.Children.OfType<Image>() 
-                    .Select((img,i) => i + 1 ==(int)img.Tag)
+                    .Select((img,i) => expectedImageOrder[i] ==(int)img.Tag)
                     .All(x=>x))
             { MessageBox.Show("Решено!");  }
 
