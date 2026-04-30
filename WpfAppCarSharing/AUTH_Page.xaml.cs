@@ -31,6 +31,21 @@ namespace WpfAppCarSharing
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Password;
+            //var isFirst = true; //На потом
+
+
+            //НЕПОЛНЫЙ КОД ДЛЯ ТЕСТА
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("заполните поля");
+                return;
+            }
+            else
+            {
+                PageNavigator.frm.Navigate(new PasswordChager());
+            }
 
         }
 

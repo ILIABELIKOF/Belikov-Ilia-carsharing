@@ -18,19 +18,23 @@
             <TextBox Name="FirstNameAdd" Text="Введите Имя" 
                      Foreground="Gray" Background="AliceBlue"
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
-                     Margin="3.5"/>
+                     Margin="3.5"  
+                     GotFocus="FirstNameAdd_GotFocus" LostFocus="FirstNameAdd_LostFocus"/>
             <TextBox Name="LastNameAdd" Text="Введите Фамилию" 
                      Foreground="Gray" Background="AliceBlue"
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
-                     Margin="3.5"/>
+                     Margin="3.5"
+                     GotFocus="LastNameAdd_GotFocus" LostFocus="LastNameAdd_LostFocus"/>
             <TextBox Name="LoginAdd" Text="Введите Логин" 
                      Foreground="Gray" Background="AliceBlue"
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
-                     Margin="3.5"/>
+                     Margin="3.5"
+                     GotFocus="LoginAdd_GotFocus" LostFocus="LoginAdd_LostFocus"/>
             <TextBox Name="PasswordAdd" Text="Введите Пароль" 
                      Foreground="Gray" Background="AliceBlue"
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
-                     Margin="3.5"/>
+                     Margin="3.5"
+                     GotFocus="PasswordAdd_GotFocus" LostFocus="PasswordAdd_LostFocus"/>
 
         </StackPanel>
         <Button x:Name="ConfirmAddUser" Content="Добавить" FontSize="20" FontWeight="DemiBold" Grid.Row="1" IsDefault="True"

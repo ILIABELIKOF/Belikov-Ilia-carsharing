@@ -26,11 +26,12 @@ namespace WpfAppCarSharing
         }
 
         private void ToAdd_Click(object sender, RoutedEventArgs e)
-        {
-
+        {   
+            //ЗАГЛУШКА
+            PageNavigator.frm.Navigate(new AddUser());
         }
 
-        private void ToUnban_Click(object sender, RoutedEventArgs e)
+        private void ForUnban_Click(object sender, RoutedEventArgs e)
         {
 
         }

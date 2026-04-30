@@ -33,10 +33,10 @@
                 Foreground="Aqua" Background="LightYellow" BorderBrush="Gray"
                 Margin="15,0" Click="ToAdd_Click"/>
 
-        <Button x:Name="ToUnban" Content="Разблокировать Пользователя" FontSize="15" FontWeight="DemiBold" Grid.Row="1" 
+        <Button x:Name="ForUnban" Content="Разблокировать Пользователя" FontSize="15" FontWeight="DemiBold" Grid.Row="1" 
                 HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="250" Height="40"
                 Foreground="Aqua" Background="LightYellow" BorderBrush="Gray"
-                Margin="0,0" Click="ToUnban_Click"/>
+                Margin="0,0" Click="ForUnban_Click"/>
     </Grid>
 </Page>

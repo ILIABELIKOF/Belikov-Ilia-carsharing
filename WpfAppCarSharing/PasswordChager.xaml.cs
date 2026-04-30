@@ -26,8 +26,9 @@ namespace WpfAppCarSharing
         }
 
         private void ConfirmNewPassword_Click(object sender, RoutedEventArgs e)
-        {
-
+        { 
+            //ЗАГЛУШКА
+            PageNavigator.frm.Navigate(new AdminPage());
         }
         
         
