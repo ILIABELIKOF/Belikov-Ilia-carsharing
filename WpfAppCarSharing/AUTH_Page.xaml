@@ -6,16 +6,100 @@
       xmlns:local="clr-namespace:WpfAppCarSharing"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Авторизация"
-      Background="Azure">
+      Title="Авторизация">
+    <Page.Resources>
+        <!-- Цвета для контраста с Azure -->
+        <SolidColorBrush x:Key="ButtonPrimary" Color="#007ACC"/>
+        <!-- Глубокий синий -->
+        <SolidColorBrush x:Key="ButtonHover" Color="#005A9E"/>
+        <SolidColorBrush x:Key="AccentAqua" Color="#00FFFF"/>
 
-    <Grid Margin="10">
+        <!-- Общий стиль для TextBox и PasswordBox -->
+        <Style x:Key="InputBaseStyle" TargetType="Control">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#ADB9CA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Применяем стиль к TextBox -->
+        <Style TargetType="TextBox" BasedOn="{StaticResource InputBaseStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Применяем стиль к PasswordBox -->
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource InputBaseStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="border" 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Контрастная кнопка -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonPrimary}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="demiBold"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ButtonHover}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+
+
+    <Grid >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="180"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -23,86 +107,74 @@
             <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
 
-
+       
 
         <TextBlock Text="Авторизация" Grid.Row="0" 
             FontSize="35"   
-            Foreground="Aqua"  
+            
             FontWeight="DemiBold"
-            Width="235"
+          
             HorizontalAlignment="Center"
-            Margin="0,0,0,0"
              />
-        <StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Width="300" >
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Width="300" Height="76" >
 
             <!--<TextBlock Text="Логин:"   HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>-->
-            <TextBox x:Name="txtUsername" Text="Логин" FontSize="18"
+            <TextBox x:Name="txtUsername" Text="Логин" FontSize="15"
                      Height="30" Width="250" 
                      VerticalAlignment="Center"
-                     Foreground="Gray" Background="AliceBlue" BorderBrush="Gray"
+                     
                      Margin="0,5,0,10"
                      GotFocus="txtUsername_GotFocus"
                      LostFocus="txtUsername_LostFocus" />
-            
-            
+
+
             <Grid Width="250" Height="30">
-            <!--<TextBlock Text="Пароль:"  HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>-->
-            <PasswordBox x:Name="txtPassword" 
+                <!--<TextBlock Text="Пароль:"  HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>-->
+                <PasswordBox x:Name="txtPassword" 
                          Height="30" Width="250" 
-                         FontSize="18"
+                         FontSize="15"
                          HorizontalAlignment="Center" 
-                         Background="AliceBlue" BorderBrush="Gray" 
+                         
                          PasswordChanged="txtPassword_PasswordChanged"
                          Margin="0,0,0,0"/>
                 <TextBlock x:Name="lblPasswordHint"
                            Text="Пароль"
-                           Foreground="Gray"
+                           
                            Margin="2,0, 0,0"
                            IsHitTestVisible="False"
                            VerticalAlignment="Center"
-                           FontSize="18"/>
+                           FontSize="15"/>
             </Grid>
-            
-            
+
+
         </StackPanel>
 
 
 
-        <StackPanel  Margin="0,2.5,0,3.5" HorizontalAlignment="Center" Grid.Row="2"  Width="250">
+        <StackPanel  Margin="0,2,0,4" HorizontalAlignment="Center" Grid.Row="2"  Width="250">
 
             <TextBlock Text="Пройдите Captcha:" 
                 HorizontalAlignment="Center" 
-                FontSize="18" 
+                 FontSize="15"
                 FontWeight="DemiBold"/>
 
             <Grid>
                 <UniformGrid Name="PuzzleGrid" Rows="2" Columns="2" Height="135" Width="135" />
             </Grid>
 
-            <!--<TextBox  x:Name="Captcha"  Height="20" Width="150" 
-                      BorderBrush="Gray" Background="AliceBlue" 
-                      Margin="0,5" />-->
+
 
         </StackPanel>
 
         <Button x:Name="LoginButton" Content="войти"  Grid.Row="3"
-                FontWeight="Bold" Height="40" Width="150"  
-                Background="LightYellow" Foreground="Aqua" BorderBrush="Gray"
-                           FontSize="14" IsDefault="True" Margin="0,20,0,0" 
-                    Click="LoginButton_Click"/>
+                           IsDefault="True" FontSize="15" 
+                
+                Width="150" Height="30"
+                    Click="LoginButton_Click" />
+       
 
         <Button x:Name="GetApiButton" Content="API"  Grid.Row="3" Grid.Column="1" 
-               Background="LightYellow" Foreground="Aqua" BorderBrush="Gray" FontWeight="Bold"
-                FontSize="15" Click="GetApiButton_Click" 
-               Margin="10,20,10,0
-                
-                
-                
-                
-                
-                
-                
-                
-                " />
+               FontSize="15"
+                 Click="GetApiButton_Click" />
     </Grid>
 </Page>

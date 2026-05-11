@@ -44,7 +44,7 @@ namespace WpfAppCarSharing
             }
             else
             {
-                PageNavigator.frm.Navigate(new PasswordChager());
+                PageNavigator.frm.Navigate(new AdminPage());
             }
 
         }
