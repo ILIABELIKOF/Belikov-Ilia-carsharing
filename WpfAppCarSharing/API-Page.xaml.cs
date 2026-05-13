@@ -24,8 +24,14 @@ namespace WpfAppCarSharing
         {
             InitializeComponent();
         }
+ 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SendResultButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TakeDataButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

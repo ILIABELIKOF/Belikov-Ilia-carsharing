@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,7 +30,7 @@ namespace WpfAppCarSharing
             LoadPuzzle();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async Task LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Password;
@@ -39,12 +40,36 @@ namespace WpfAppCarSharing
             //НЕПОЛНЫЙ КОД ДЛЯ ТЕСТА
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("заполните поля");
+                MessageBox.Show("Введите логин  и пароль!");
                 return;
             }
-            else
+            /*
+            else if (CheckPuzzle() )
             {
-                PageNavigator.frm.Navigate(new AdminPage());
+                using (var context = new CarSharingEntities())
+                {
+
+                    var account = await context.SystemAccount
+                        .Where(u => u.Login = username)
+                }       .FirstOrDefaultAsync();
+                if(account == null)
+                {
+                    MessageBox.Show("Неверный логин или пароль", " Wrong password ", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+           
+              
+
+                if (account.Password = password) {
+
+                    if(account.Type == 0 ) //Администратор 
+                    {
+                        PageNavigator.frm.Navigate(new AdminPage());
+                        
+                    }
+                    else { MessageBox.Show("Другие страницы еще не готовы", " ", MessageBoxButton.OK); }
+
+                }
+
             }
 
         }
@@ -52,6 +77,7 @@ namespace WpfAppCarSharing
         private void GetApiButton_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.frm.Navigate(new API_Page());
+        */
         }
 
         //ВИЗУЛЬНАЯ РАБОТА ЛОГИНА В 2 МЕТОДА

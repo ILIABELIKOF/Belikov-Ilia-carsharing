@@ -62,13 +62,13 @@
 
         <StackPanel Grid.Column="0">
             
-            <Button Content="Отправить результат"  Width="290"  Height="30" Margin="3,110,3,0"
+            <Button x:Name="SendResultButton" Content="Отправить результат"  Width="290"  Height="30" Margin="3,110,3,0" Click="SendResultButton_Click"
                     
-                    Click="Button_Click"/>
+                   />
 
-            <Button Content="Получить данные" Width="290"  Height="30" Margin="3,55,3,0"
+            <Button x:Name="TakeDataButton" Content="Получить данные" Width="290"  Height="30" Margin="3,55,3,0" Click="TakeDataButton_Click"
                     
-                    Click="Button_Click"/>
+                   />
             
         </StackPanel>
 
