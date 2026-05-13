@@ -1,0 +1,401 @@
+USE [CarSharing]
+GO
+/****** Объект:  Table [dbo].[AutoPark]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AutoPark](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Model_Number] [int] NOT NULL,
+	[Model_Name] [nchar](30) NOT NULL,
+	[IsBusy] [bit] NOT NULL,
+	[Optional_Info] [nvarchar](50) NULL,
+ CONSTRAINT [PK_AutoPark] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Car_Reservation]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Car_Reservation](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Order_id] [int] NOT NULL,
+	[Tarriff_id] [int] NOT NULL,
+	[Time_start] [datetime] NOT NULL,
+	[Time_end] [datetime] NOT NULL,
+ CONSTRAINT [PK_Car_Reservation] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Clients]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Clients](
+	[id] [int] NOT NULL,
+	[salesman] [bit] NOT NULL,
+	[buyer] [bit] NOT NULL,
+	[BankData] [nchar](30) NULL,
+	[Pass_id] [int] NOT NULL,
+	[User_id] [int] NOT NULL,
+ CONSTRAINT [PK_Clients] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Departaments]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Departaments](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Departament_Number] [int] NOT NULL,
+	[Departament_adress] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Departaments] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Items_For_CarSharing]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Items_For_CarSharing](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Item_Type] [int] NOT NULL,
+	[Item_Name] [nchar](30) NOT NULL,
+	[Price] [int] NOT NULL,
+ CONSTRAINT [PK_Items_For_CarSharing] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[MainTenance]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MainTenance](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Specification_id] [int] NOT NULL,
+	[Master_id] [int] NOT NULL,
+	[Car_id] [int] NOT NULL,
+	[Date] [date] NOT NULL,
+ CONSTRAINT [PK_MainTenance] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Masters]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Masters](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[User_id] [int] NOT NULL,
+	[Deal_Document_Number] [int] NOT NULL,
+	[Departament_id] [int] NOT NULL,
+ CONSTRAINT [PK_Masters] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Materials]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Materials](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Item_id] [int] NOT NULL,
+	[Material_Name] [nchar](30) NOT NULL,
+	[Dimension] [nchar](10) NOT NULL,
+ CONSTRAINT [PK_Materials] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Order_Customs]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Order_Customs](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Order_id] [int] NOT NULL,
+	[Item_id] [int] NOT NULL,
+	[Order_Items_Quantity] [int] NOT NULL,
+	[Custom_Cost] [int] NOT NULL,
+ CONSTRAINT [PK_Order_Customs] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Orders]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Orders](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Order_Number] [int] NOT NULL,
+	[Organization] [nchar](10) NULL,
+	[Customer_id] [int] NOT NULL,
+	[Order_Date] [date] NOT NULL,
+	[Order_Status] [tinyint] NULL,
+ CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Passes]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Passes](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Pass_Name] [nchar](30) NOT NULL,
+	[Pass_Price] [int] NOT NULL,
+	[Period] [datetime] NOT NULL,
+ CONSTRAINT [PK_Passes] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Services]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Services](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Item_id] [int] NOT NULL,
+	[Service_Name] [nchar](30) NOT NULL,
+ CONSTRAINT [PK_Services] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Sets_of_Materials_For_specifications]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Sets_of_Materials_For_specifications](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Material_id] [int] NOT NULL,
+	[Material_Quantity] [int] NOT NULL,
+	[Set_Cost] [int] NOT NULL,
+ CONSTRAINT [PK_Sets_of_Materials_For_specifications] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Specification_For_MainTenance]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Specification_For_MainTenance](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Specification_Name] [nchar](30) NOT NULL,
+	[Service_Creator_id] [int] NOT NULL,
+	[Set_Of_Materials_id] [int] NOT NULL,
+	[Spec_Quantity] [int] NOT NULL,
+	[Spec_Cost] [int] NOT NULL,
+ CONSTRAINT [PK_Specification_For_MainTenance] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[System_Accounts]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[System_Accounts](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[User_Id] [int] NOT NULL,
+	[Login] [nchar](30) NOT NULL,
+	[Password] [nchar](30) NOT NULL,
+	[System_role] [tinyint] NOT NULL,
+	[IsBlock] [bit] NOT NULL,
+	[IsFirst] [bit] NULL,
+ CONSTRAINT [PK_System_Accounts] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Tarriffs]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tarriffs](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Item_id] [int] NOT NULL,
+	[Tarriff_Name] [int] NOT NULL,
+	[Car_id] [int] NOT NULL,
+ CONSTRAINT [PK_Tarriffs] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Объект:  Table [dbo].[Users]    Дата создания скрипта: 10.05.2026 13:56:20 ******/ 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[User_type] [tinyint] NOT NULL,
+	[First_Name] [nvarchar](50) NOT NULL,
+	[Last_Name] [nvarchar](50) NOT NULL,
+	[Phone_Number] [nchar](10) NULL,
+	[Adres] [nvarchar](50) NULL,
+	[INN] [int] NULL,
+ CONSTRAINT [PK_Users_1] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Car_Reservation]  WITH CHECK ADD  CONSTRAINT [FK_Car_Reservation_Orders] FOREIGN KEY([Order_id])
+REFERENCES [dbo].[Orders] ([id])
+GO
+ALTER TABLE [dbo].[Car_Reservation] CHECK CONSTRAINT [FK_Car_Reservation_Orders]
+GO
+ALTER TABLE [dbo].[Car_Reservation]  WITH CHECK ADD  CONSTRAINT [FK_Car_Reservation_Tarriffs] FOREIGN KEY([Tarriff_id])
+REFERENCES [dbo].[Tarriffs] ([id])
+GO
+ALTER TABLE [dbo].[Car_Reservation] CHECK CONSTRAINT [FK_Car_Reservation_Tarriffs]
+GO
+ALTER TABLE [dbo].[Clients]  WITH CHECK ADD  CONSTRAINT [FK_Clients_Passes] FOREIGN KEY([Pass_id])
+REFERENCES [dbo].[Passes] ([id])
+GO
+ALTER TABLE [dbo].[Clients] CHECK CONSTRAINT [FK_Clients_Passes]
+GO
+ALTER TABLE [dbo].[Clients]  WITH CHECK ADD  CONSTRAINT [FK_Clients_Users] FOREIGN KEY([User_id])
+REFERENCES [dbo].[Users] ([id])
+GO
+ALTER TABLE [dbo].[Clients] CHECK CONSTRAINT [FK_Clients_Users]
+GO
+ALTER TABLE [dbo].[MainTenance]  WITH CHECK ADD  CONSTRAINT [FK_MainTenance_AutoPark] FOREIGN KEY([Car_id])
+REFERENCES [dbo].[AutoPark] ([id])
+GO
+ALTER TABLE [dbo].[MainTenance] CHECK CONSTRAINT [FK_MainTenance_AutoPark]
+GO
+ALTER TABLE [dbo].[MainTenance]  WITH CHECK ADD  CONSTRAINT [FK_MainTenance_AutoPark1] FOREIGN KEY([Car_id])
+REFERENCES [dbo].[AutoPark] ([id])
+GO
+ALTER TABLE [dbo].[MainTenance] CHECK CONSTRAINT [FK_MainTenance_AutoPark1]
+GO
+ALTER TABLE [dbo].[MainTenance]  WITH CHECK ADD  CONSTRAINT [FK_MainTenance_Masters] FOREIGN KEY([Master_id])
+REFERENCES [dbo].[Masters] ([id])
+GO
+ALTER TABLE [dbo].[MainTenance] CHECK CONSTRAINT [FK_MainTenance_Masters]
+GO
+ALTER TABLE [dbo].[MainTenance]  WITH CHECK ADD  CONSTRAINT [FK_MainTenance_Specification_For_MainTenance] FOREIGN KEY([Specification_id])
+REFERENCES [dbo].[Specification_For_MainTenance] ([id])
+GO
+ALTER TABLE [dbo].[MainTenance] CHECK CONSTRAINT [FK_MainTenance_Specification_For_MainTenance]
+GO
+ALTER TABLE [dbo].[Masters]  WITH CHECK ADD  CONSTRAINT [FK_Masters_Departaments] FOREIGN KEY([Departament_id])
+REFERENCES [dbo].[Departaments] ([id])
+GO
+ALTER TABLE [dbo].[Masters] CHECK CONSTRAINT [FK_Masters_Departaments]
+GO
+ALTER TABLE [dbo].[Masters]  WITH CHECK ADD  CONSTRAINT [FK_Masters_Users] FOREIGN KEY([User_id])
+REFERENCES [dbo].[Users] ([id])
+GO
+ALTER TABLE [dbo].[Masters] CHECK CONSTRAINT [FK_Masters_Users]
+GO
+ALTER TABLE [dbo].[Materials]  WITH CHECK ADD  CONSTRAINT [FK_Materials_Items_For_CarSharing] FOREIGN KEY([Item_id])
+REFERENCES [dbo].[Items_For_CarSharing] ([id])
+GO
+ALTER TABLE [dbo].[Materials] CHECK CONSTRAINT [FK_Materials_Items_For_CarSharing]
+GO
+ALTER TABLE [dbo].[Order_Customs]  WITH CHECK ADD  CONSTRAINT [FK_Order_Customs_Items_For_CarSharing] FOREIGN KEY([Item_id])
+REFERENCES [dbo].[Items_For_CarSharing] ([id])
+GO
+ALTER TABLE [dbo].[Order_Customs] CHECK CONSTRAINT [FK_Order_Customs_Items_For_CarSharing]
+GO
+ALTER TABLE [dbo].[Order_Customs]  WITH CHECK ADD  CONSTRAINT [FK_Order_Customs_Orders] FOREIGN KEY([Order_id])
+REFERENCES [dbo].[Orders] ([id])
+GO
+ALTER TABLE [dbo].[Order_Customs] CHECK CONSTRAINT [FK_Order_Customs_Orders]
+GO
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK_Orders_Clients] FOREIGN KEY([Customer_id])
+REFERENCES [dbo].[Clients] ([id])
+GO
+ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_Clients]
+GO
+ALTER TABLE [dbo].[Services]  WITH CHECK ADD  CONSTRAINT [FK_Services_Items_For_CarSharing] FOREIGN KEY([Item_id])
+REFERENCES [dbo].[Items_For_CarSharing] ([id])
+GO
+ALTER TABLE [dbo].[Services] CHECK CONSTRAINT [FK_Services_Items_For_CarSharing]
+GO
+ALTER TABLE [dbo].[Sets_of_Materials_For_specifications]  WITH CHECK ADD  CONSTRAINT [FK_Sets_of_Materials_For_specifications_Materials] FOREIGN KEY([Material_id])
+REFERENCES [dbo].[Materials] ([id])
+GO
+ALTER TABLE [dbo].[Sets_of_Materials_For_specifications] CHECK CONSTRAINT [FK_Sets_of_Materials_For_specifications_Materials]
+GO
+ALTER TABLE [dbo].[Specification_For_MainTenance]  WITH CHECK ADD  CONSTRAINT [FK_Specification_For_MainTenance_Clients] FOREIGN KEY([Service_Creator_id])
+REFERENCES [dbo].[Clients] ([id])
+GO
+ALTER TABLE [dbo].[Specification_For_MainTenance] CHECK CONSTRAINT [FK_Specification_For_MainTenance_Clients]
+GO
+ALTER TABLE [dbo].[System_Accounts]  WITH CHECK ADD  CONSTRAINT [FK_System_Accounts_Users] FOREIGN KEY([User_Id])
+REFERENCES [dbo].[Users] ([id])
+GO
+ALTER TABLE [dbo].[System_Accounts] CHECK CONSTRAINT [FK_System_Accounts_Users]
+GO
+ALTER TABLE [dbo].[Tarriffs]  WITH CHECK ADD  CONSTRAINT [FK_Tarriffs_AutoPark] FOREIGN KEY([Car_id])
+REFERENCES [dbo].[AutoPark] ([id])
+GO
+ALTER TABLE [dbo].[Tarriffs] CHECK CONSTRAINT [FK_Tarriffs_AutoPark]
+GO
+ALTER TABLE [dbo].[Tarriffs]  WITH CHECK ADD  CONSTRAINT [FK_Tarriffs_Items_For_CarSharing] FOREIGN KEY([Item_id])
+REFERENCES [dbo].[Items_For_CarSharing] ([id])
+GO
+ALTER TABLE [dbo].[Tarriffs] CHECK CONSTRAINT [FK_Tarriffs_Items_For_CarSharing]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - тариф
+1 - материл
+2 - услуга' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Items_For_CarSharing', @level2type=N'COLUMN',@level2name=N'Item_Type'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - Админ
+1 - Менеджер
+2 - Бухгалтер' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'System_Accounts', @level2type=N'COLUMN',@level2name=N'System_role'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - сотрудник
+1 - клиент
+2 - мастер
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Users', @level2type=N'COLUMN',@level2name=N'User_type'
+GO
