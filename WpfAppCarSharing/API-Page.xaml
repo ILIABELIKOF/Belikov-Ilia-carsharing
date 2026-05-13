@@ -21,15 +21,15 @@
 
         <StackPanel Grid.Column="0">
             
-            <Button Content="Отправить результат"  Width="290"  Height="30" Margin="3,110,3,0"
+            <Button x:Name="SendResult" Content="Отправить результат"  Width="290"  Height="30" Margin="3,110,3,0"
                     
-                    Click="Button_Click" 
+ 
                     
                     FontWeight="Bold" Foreground="Aqua" BorderBrush="Gray" Background="LightYellow" BorderThickness="2"  />
 
-            <Button Content="Получить данные" Width="290"  Height="30" Margin="3,55,3,0"
+            <Button x:Name="TakeData" Content="Получить данные" Width="290"  Height="30" Margin="3,55,3,0"
                     
-                    Click="Button_Click" 
+                     
                     
                     FontWeight="Bold" Foreground="Aqua" BorderBrush="Gray" Background="LightYellow" BorderThickness="2" />
             
@@ -41,7 +41,7 @@
             <Border BorderBrush="Gray"  BorderThickness="2" CornerRadius="5" Padding="5" Background="LightYellow"
                     Margin="3,75,3,0">
                 
-                <TextBlock  Name="DataTake" Text="{Binding}"
+                <TextBlock  Name="txtDataTake" Text="{Binding}"
                             
                             FontWeight="Bold" Foreground="Aqua" Background="LightGray" 
                             
@@ -52,7 +52,7 @@
             <Border BorderBrush="Gray"  BorderThickness="2" CornerRadius="5" Padding="5" Background="LightYellow"
                     Margin="3,10,3,0">
                 
-                <TextBlock  Name="SendResult" 
+                <TextBlock  Name="txtSendResult" 
                             
                             FontWeight="Bold" Foreground="Aqua"  Background="LightGray" 
                             
