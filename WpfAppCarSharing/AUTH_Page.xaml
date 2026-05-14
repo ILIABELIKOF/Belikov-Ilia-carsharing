@@ -190,6 +190,6 @@
 
         <Button x:Name="GetApiButton" Content="API"  Grid.Row="3" Grid.Column="1" 
                FontSize="15"
-                 Click="GetApiButton_Click"  Margin="0.5"/>
+                 Click="GetApiButton_Click"  Margin="0.6"/>
     </Grid>
 </Page>

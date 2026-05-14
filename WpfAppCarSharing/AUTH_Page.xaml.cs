@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Security.Principal;
@@ -28,24 +29,32 @@ namespace WpfAppCarSharing
         {
             InitializeComponent();
 
-         
-
             LoadPuzzle();
         }
+
+     
+        
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Password;
-           
 
 
-            
+
+            CheckPuzzle();
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Введите логин  и пароль!");
                 return;
             }
+
+            //if (!isCaptchaPassed)
+            //{
+            //    MessageBox.Show("Сначала решите капчу!");
+            //    return;
+            //}
 
             try
             {
@@ -168,19 +177,64 @@ namespace WpfAppCarSharing
 
         }
 
+        private bool isCaptchaPassed = false;
         private void CheckPuzzle()
-        {
+        { 
             var expectedImageOrder = new int[] { 2, 1, 3, 4 };
-            if (PuzzleGrid.Children.OfType<Image>() 
-                    .Select((img,i) => expectedImageOrder[i] ==(int)img.Tag)
-                    .All(x=>x))
-            { MessageBox.Show("Решено!");  }
+            if (PuzzleGrid.Children.OfType<Image>()
+                    .Select((img, i) => expectedImageOrder[i] == (int)img.Tag)
+                    .All(x => x))
+            {
+                MessageBox.Show("Решено!");
+                isCaptchaPassed = PuzzleGrid.Children.OfType<Image>().Select((img, i) => expectedImageOrder[i] == (int)img.Tag).All(x => x);
+            }
+            else
+            {
+                MessageBox.Show("Сначала решите капчу!");
+                return;
+            }
+            }
 
 
         }
-
-       
-    }
 }
 
-      
+//Разные решения по проверке капчи:
+/* добавляем флаг для хранения состояния капчи 
+ private bool isCaptchaPassed = false; 
+
+ В коде перемещения картинок добавьте строчку:csharpCheckPuzzle();
+// Сразу после этого проверяем условие еще раз для нашего флага
+var expectedImageOrder = new int[] { 2, 1, 3, 4 };
+isCaptchaPassed = PuzzleGrid.Children.OfType<Image>().Select((img, i) => expectedImageOrder[i] == (int)img.Tag).All(x => x);
+
+Тогда в кнопке LoginButton_Click достаточно будет написать:csharpif (!isCaptchaPassed)
+{
+    MessageBox.Show("Сначала решите капчу!");
+    return;
+}
+// код авторизации...
+*/
+
+/*
+ private async void LoginButton_Click(object sender, RoutedEventArgs e)
+{
+    // Копируем условие из CheckPuzzle один в один
+    var expectedImageOrder = new int[] { 2, 1, 3, 4 };
+    bool isSolved = PuzzleGrid.Children.OfType<Image>() 
+                        .Select((img, i) => expectedImageOrder[i] == (int)img.Tag)
+                        .All(x => x);
+
+    // 1. Проверяем результат
+    if (!isSolved)
+    {
+        MessageBox.Show("Капча не пройдена! Соберите пазл.");
+        return; // Прерываем авторизацию
+    }
+
+    // 2. Дальнейший ваш код авторизации
+    string username = UsernameTextBox.Text;
+    // ... логика входа
+}
+
+ */

@@ -80,38 +80,46 @@ namespace WpfAppCarSharing
             }
         }
 
-        private void LoginAdd_GotFocus(object sender, RoutedEventArgs e)
+        private void PhoneNumber_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (LoginAdd.Text == "Введите Логин")
+            if (PhoneNumber.Text == "Введите Номер телефона")
             {
-                LoginAdd.Clear();
+                PhoneNumber.Clear();
             }
         }
 
-        private void LoginAdd_LostFocus(object sender, RoutedEventArgs e)
+        private void PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(LoginAdd.Text))
+            if (string.IsNullOrEmpty(PhoneNumber.Text))
             {
-                LoginAdd.Text = "Введите Логин";         
+                PhoneNumber.Text = "Введите Номер телефона";         
             }
         }
 
-        private void PasswordAdd_GotFocus(object sender, RoutedEventArgs e)
+        private void Adres_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(PasswordAdd.Text == "Введите Пароль")
+            if(Adres.Text == "Введите Адрес")
             {
-                PasswordAdd.Clear();
+                Adres.Clear();
             }
         }
 
-        private void PasswordAdd_LostFocus(object sender, RoutedEventArgs e)
+        private void Adres_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(PasswordAdd.Text))
+            if (string.IsNullOrEmpty(Adres.Text))
             {
-                PasswordAdd.Text = "Введите Пароль";
+                Adres.Text = "Введите Адрес";
 
             }
         }
+
+        private void INN_GotFocus(object sender, RoutedEventArgs e)
+        { 
+        
+            if (string.IsNullOrEmpty())
+        
+        }
+
     }
 
 }

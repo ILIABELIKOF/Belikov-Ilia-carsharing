@@ -75,10 +75,11 @@ namespace WpfAppCarSharing
             }
 
         }
+        
         private void ToAdd_Click(object sender, RoutedEventArgs e)
-        {   
-            //ЗАГЛУШКА
-            PageNavigator.frm.Navigate(new AddUser());
+        {    
+            PageNavigator.frm.Navigate(new AddUser())
+        
         }
 
         private void ForUnban_Click(object sender, RoutedEventArgs e)
@@ -108,6 +109,46 @@ namespace WpfAppCarSharing
                 
                 var selectedUser = TableOfUsers.SelectedItem as DisplayItems;
                 
+            }
+        }
+
+        private void ConfirmChanges_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var db = new CarSharingEntities())
+                {
+                    var updatedUsers = TableOfUsers.ItemsSource as List<DisplayItems>;
+
+                    if (updatedUsers != null)
+                    {
+                        foreach (var displayUser in updatedUsers)
+                        {
+                            var dbUser = db.Users.FirstOrDefault();
+                            
+                            if (dbUser != null)
+                            {
+                                dbUser.Last_Name = displayUser.Last_Name;
+                                dbUser.First_Name = displayUser.First_Name;
+                                dbUser.Adres = displayUser.Adres;
+                                dbUser.Phone_Number = displayUser.Phone_Number;
+                                dbUser.INN = displayUser.INN;
+                            }
+                        }
+
+                        db.SaveChanges();
+                        MessageBox.Show("Изменения успешно сохранены!", "Успех",
+                                      MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                        LoadData();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
