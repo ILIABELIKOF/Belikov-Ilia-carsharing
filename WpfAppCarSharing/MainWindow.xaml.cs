@@ -23,6 +23,7 @@ namespace WpfAppCarSharing
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             PageNavigator.frm = MainFrm;
             PageNavigator.frm.Navigate(new AUTH_Page());
            

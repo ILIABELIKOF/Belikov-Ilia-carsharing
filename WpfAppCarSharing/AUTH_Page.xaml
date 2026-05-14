@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:WpfAppCarSharing"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Авторизация">
+      Title="Авторизация"
+      KeepAlive="False">
     <Page.Resources>
         <!-- Цвета для контраста с Azure -->
         <SolidColorBrush x:Key="ButtonPrimary" Color="#007ACC"/>

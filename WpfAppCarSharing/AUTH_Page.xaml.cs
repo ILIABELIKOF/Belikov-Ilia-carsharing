@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Security.Principal;
@@ -27,26 +28,55 @@ namespace WpfAppCarSharing
         {
             InitializeComponent();
 
+         
+
             LoadPuzzle();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Password;
-            //var isFirst = true; //На потом
+           
 
 
-            //НЕПОЛНЫЙ КОД ДЛЯ ТЕСТА
+            
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Введите логин  и пароль!");
                 return;
             }
-            else
+
+            try
             {
-                PageNavigator.frm.Navigate(new AdminPage());
+                using (var context = new CarSharingEntities())
+                {
+
+                    var SysUser = await context.System_Accounts
+                        .FirstOrDefaultAsync(u => u.Login == username && u.Password == password);
+                    if (SysUser == null)
+                    {
+                        MessageBox.Show("Неверный логин или пароль", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                   else
+                    {
+
+                        
+                        MessageBox.Show("Вы авторизованы ", "Welcome!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        //if (SysUser.System_role == 0)
+                        //{
+                            PageNavigator.frm.Navigate(new AdminPage());
+                        //}
+                    }
+
+
+                }
+
+
             }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
 
         }
 

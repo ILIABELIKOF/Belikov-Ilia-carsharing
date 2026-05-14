@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f00cc7aebd9941ed858d15540859702f" Name="Diagram1">
+        <EntityTypeShape EntityType="CarSharingModel.AutoPark" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Car_Reservation" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Client" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Departament" Width="1.5" PointX="4.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Items_For_CarSharing" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.MainTenance" Width="1.5" PointX="9" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Master" Width="1.5" PointX="6.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Material" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Order_Customs" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Order" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Pass" Width="1.5" PointX="1.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Service" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Sets_of_Materials_For_specifications" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Specification_For_MainTenance" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.System_Accounts" Width="1.5" PointX="3.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.Tarriff" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingModel.User" Width="1.5" PointX="1.5" PointY="22.125" IsExpanded="true" />
+        <AssociationConnector Association="CarSharingModel.FK_MainTenance_AutoPark1" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Tarriffs_AutoPark" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Car_Reservation_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Car_Reservation_Tarriffs" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Clients_Passes" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Clients_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Orders_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Specification_For_MainTenance_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Masters_Departaments" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Materials_Items_For_CarSharing" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Order_Customs_Items_For_CarSharing" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Services_Items_For_CarSharing" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Tarriffs_Items_For_CarSharing" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_MainTenance_Masters" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_MainTenance_Specification_For_MainTenance" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Masters_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Sets_of_Materials_For_specifications_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_Order_Customs_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingModel.FK_System_Accounts_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

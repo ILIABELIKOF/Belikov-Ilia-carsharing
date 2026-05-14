@@ -23,8 +23,58 @@ namespace WpfAppCarSharing
         public AdminPage()
         {
             InitializeComponent();
+            LoadData(); 
         }
 
+        public class DisplayItems 
+        {
+        
+            public string Last_Name { get; set; }
+            public string First_Name { get; set; }
+            public string Adres { get; set; }
+            public string Phone_Number { get; set; }
+            public int INN { get; set; }
+            public bool IsBlock  { get; set; }
+            
+        }
+
+
+        private void LoadData() 
+        {
+            using (var db = new CarSharingEntities())
+            {
+                // Загружаем пользователей вместе с их аккаунтами
+                // Проверьте точное имя свойства в вашем классе User (обычно System_Accounts)
+                var users = db.Users.Include("System_Accounts").ToList();
+
+                var userList = new List<DisplayItems>();
+
+                foreach (var user in users)
+                {
+                    // Получаем связанный аккаунт для текущего пользователя
+                    var account = user.System_Accounts.FirstOrDefault();
+
+                    userList.Add(new DisplayItems
+                    {
+                        // Данные берутся из таблицы Users согласно схеме
+                        Last_Name = user.Last_Name ?? "",
+                        First_Name = user.First_Name ?? "",
+                        Adres = user.Adres ?? "",
+                        Phone_Number = user.Phone_Number ?? "",
+                        INN = user.INN ?? 0,
+
+                        // Данные берутся из связанной таблицы System_Accounts
+                        // Если аккаунта нет (null), подставляются значения по умолчанию
+                       
+                        IsBlock = account?.IsBlock ?? false,
+                    
+                    });
+                }
+
+                TableOfUsers.ItemsSource = userList;
+            }
+
+        }
         private void ToAdd_Click(object sender, RoutedEventArgs e)
         {   
             //ЗАГЛУШКА
@@ -33,12 +83,32 @@ namespace WpfAppCarSharing
 
         private void ForUnban_Click(object sender, RoutedEventArgs e)
         {
-
+            if (TableOfUsers.SelectedItem != null) 
+            {
+                var selectedU = TableOfUsers.SelectedItem as DisplayItems;
+                selectedU.IsBlock = false;  
+                TableOfUsers.Items.Refresh();
+            
+            }
+            else
+            {
+                MessageBox.Show("Выберите пользователя для разблокировки", "Информация",
+                              MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void ChangePasw_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.frm.Navigate(new PasswordChager());
+        }
+
+        private void TableOfUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TableOfUsers.SelectedItem != null) { 
+                
+                var selectedUser = TableOfUsers.SelectedItem as DisplayItems;
+                
+            }
         }
     }
 }

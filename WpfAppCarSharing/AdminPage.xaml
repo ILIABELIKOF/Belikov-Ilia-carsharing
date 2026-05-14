@@ -148,14 +148,20 @@
         </Grid.RowDefinitions>
         <StackPanel Margin="10">
 
-            <DataGrid x:Name="TableOfUsers" AutoGenerateColumns="False" IsReadOnly="False" SelectionMode="Single" Margin="0">
+            <DataGrid x:Name="TableOfUsers"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      SelectionChanged="TableOfUsers_SelectionChanged"
+                      IsReadOnly="False" 
+                      SelectionMode="Single" 
+                      Margin="0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Header="Фамилия" Binding="{Binding LastName}"  />
-                    <DataGridTextColumn  Header="Имя" Binding="{Binding FirstName}"  />
-                    <DataGridTextColumn  Header="Тип" Binding="{Binding Type}"  />
-                    <DataGridTextColumn  Header="Номер Телефона" Binding="{Binding PhoneNumber}"  />
-                    
-                    <DataGridTextColumn  Header="Заблокирован?" Binding="{Binding IsLocked}"  />
+                    <DataGridTextColumn  Header="Фамилия" Binding="{Binding Last_Name}"  />
+                    <DataGridTextColumn  Header="Имя" Binding="{Binding First_Name}"  />
+                    <DataGridTextColumn  Header="Адрес" Binding="{Binding Adres}"  />
+                    <DataGridTextColumn  Header="Номер Телефона" Binding="{Binding Phone_Number}"  />
+                    <DataGridTextColumn  Header="ИНН" Binding="{Binding INN}"  />
+                    <DataGridTextColumn Header="Заблокирован?" Binding="{Binding IsBlock}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
