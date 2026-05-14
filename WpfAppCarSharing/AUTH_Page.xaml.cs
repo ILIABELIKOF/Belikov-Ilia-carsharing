@@ -93,7 +93,9 @@ namespace WpfAppCarSharing
         //СОЗДАНИЕ CAPTCHA
         private void LoadPuzzle()
         {
-            var pices = Enumerable.Range(1, 4).OrderBy(x => new Random().Next()).ToList();
+            var rnd = new Random();
+            var pices = Enumerable.Range(1, 4).ToList();
+            pices = pices.OrderBy(x => rnd.Next()).ToList();
             pices.ForEach(x =>
             {
                 var img = new Image

@@ -35,5 +35,10 @@ namespace WpfAppCarSharing
         {
 
         }
+
+        private void ChangePasw_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.frm.Navigate(new PasswordChager());
+        }
     }
 }

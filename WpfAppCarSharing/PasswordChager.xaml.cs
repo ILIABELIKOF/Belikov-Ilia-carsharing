@@ -35,7 +35,7 @@ namespace WpfAppCarSharing
         //РАБОТА С ВИДИМОСТЬЮ НАДПИСЕЙ
         private void OldPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (OldPassword.SecurePassword.Length > 0)
+            if (OldPassword.SecurePassword.Length>0)
             {
                 lblOldPassword.Visibility = Visibility.Collapsed;
             }

@@ -7,7 +7,139 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage"
-      Background="Azure">
+      >
+
+    <Page.Resources>
+        <!-- Цвета для контраста с Azure -->
+        <SolidColorBrush x:Key="ButtonPrimary" Color="#007ACC"/>
+        <!-- Глубокий синий -->
+        <SolidColorBrush x:Key="ButtonHover" Color="#005A9E"/>
+        <SolidColorBrush x:Key="AccentAqua" Color="#00FFFF"/>
+
+        <!-- Общий стиль для TextBox и PasswordBox -->
+        <Style x:Key="InputBaseStyle" TargetType="Control">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#ADB9CA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Применяем стиль к TextBox -->
+        <Style TargetType="TextBox" BasedOn="{StaticResource InputBaseStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" 
+                     Background="{TemplateBinding Background}" 
+                     BorderBrush="{TemplateBinding BorderBrush}" 
+                     BorderThickness="{TemplateBinding BorderThickness}" 
+                     CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Применяем стиль к PasswordBox -->
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource InputBaseStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="border" 
+                     Background="{TemplateBinding Background}" 
+                     BorderBrush="{TemplateBinding BorderBrush}" 
+                     BorderThickness="{TemplateBinding BorderThickness}" 
+                     CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Контрастная кнопка -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonPrimary}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="demiBold"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ButtonHover}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="Black"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Заголовки столбцов -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F0F5F9"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#D0D7DE"/>
+        </Style>
+
+        <!-- Сама таблица -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D0D7DE"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowHeight" Value="35"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#F0F0F0"/>
+            <Setter Property="AlternatingRowBackground" Value="#FAFBFC"/>
+            <Setter Property="AutoGenerateColumns" Value="True"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+        </Style>
+
+        <!-- Строки таблицы -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#E1EFFE"/>
+                    <Setter Property="Foreground" Value="#007ACC"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5F8FA"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,28 +147,39 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="10">
-            <DataGrid x:Name="TableOfUsers" AutoGenerateColumns="False" IsReadOnly="False" SelectionMode="Single" Margin="0"   >
+
+            <DataGrid x:Name="TableOfUsers" AutoGenerateColumns="False" IsReadOnly="False" SelectionMode="Single" Margin="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn  Header="Фамилия" Binding="{Binding LastName}"  />
                     <DataGridTextColumn  Header="Имя" Binding="{Binding FirstName}"  />
-                    <DataGridTextColumn  Header="Роль" Binding="{Binding Role}"  />
-                    <DataGridTextColumn  Header="Логин" Binding="{Binding login}"  />
+                    <DataGridTextColumn  Header="Тип" Binding="{Binding Type}"  />
+                    <DataGridTextColumn  Header="Номер Телефона" Binding="{Binding PhoneNumber}"  />
+                    
                     <DataGridTextColumn  Header="Заблокирован?" Binding="{Binding IsLocked}"  />
                 </DataGrid.Columns>
             </DataGrid>
+
         </StackPanel>
-        
-        
+
+
         <Button x:Name="ToAdd" Content="Добавить Нового Пользователя" FontSize="15" FontWeight="DemiBold" Grid.Row="1" 
                 HorizontalAlignment="Left" VerticalAlignment="Center"
                 Width="250" Height="40"
-                Foreground="Aqua" Background="LightYellow" BorderBrush="Gray"
+               
                 Margin="15,0" Click="ToAdd_Click"/>
 
         <Button x:Name="ForUnban" Content="Разблокировать Пользователя" FontSize="15" FontWeight="DemiBold" Grid.Row="1" 
                 HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="250" Height="40"
-                Foreground="Aqua" Background="LightYellow" BorderBrush="Gray"
+                
                 Margin="0,0" Click="ForUnban_Click"/>
+
+        <Button x:Name="ChangePasw" Content="Сменить пароль"  FontSize="15" FontWeight="DemiBold" FontStyle="Oblique" Grid.Row="1" 
+         HorizontalAlignment="Right" VerticalAlignment="Center"
+         Width="125" Height="21"
+        
+         Margin="0,16,10,0" Click="ChangePasw_Click"/>
+        
+        
     </Grid>
 </Page>

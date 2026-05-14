@@ -6,39 +6,139 @@
       xmlns:local="clr-namespace:WpfAppCarSharing"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddUser"
-      Background="Azure">
+      Title="AddUser">
+
+    <Page.Resources>
+        <!-- Цвета для контраста с Azure -->
+        <SolidColorBrush x:Key="ButtonPrimary" Color="#007ACC"/>
+        <!-- Глубокий синий -->
+        <SolidColorBrush x:Key="ButtonHover" Color="#005A9E"/>
+        <SolidColorBrush x:Key="AccentAqua" Color="#00FFFF"/>
+
+        <!-- Общий стиль для TextBox и PasswordBox -->
+        <Style x:Key="InputBaseStyle" TargetType="Control">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#ADB9CA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Применяем стиль к TextBox -->
+        <Style TargetType="TextBox" BasedOn="{StaticResource InputBaseStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" 
+                     Background="{TemplateBinding Background}" 
+                     BorderBrush="{TemplateBinding BorderBrush}" 
+                     BorderThickness="{TemplateBinding BorderThickness}" 
+                     CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Применяем стиль к PasswordBox -->
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource InputBaseStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="border" 
+                     Background="{TemplateBinding Background}" 
+                     BorderBrush="{TemplateBinding BorderBrush}" 
+                     BorderThickness="{TemplateBinding BorderThickness}" 
+                     CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Контрастная кнопка -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonPrimary}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="demiBold"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ButtonHover}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="Black"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+
+    </Page.Resources>
 
     <Grid Margin="20">
+        
+        
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
+        
+        
         <StackPanel Margin="0,0,150,0">
             <TextBox Name="FirstNameAdd" Text="Введите Имя" 
-                     Foreground="Gray" Background="AliceBlue"
+                    
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
                      Margin="3.5"  
                      GotFocus="FirstNameAdd_GotFocus" LostFocus="FirstNameAdd_LostFocus"/>
             <TextBox Name="LastNameAdd" Text="Введите Фамилию" 
-                     Foreground="Gray" Background="AliceBlue"
+                     
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
                      Margin="3.5"
                      GotFocus="LastNameAdd_GotFocus" LostFocus="LastNameAdd_LostFocus"/>
             <TextBox Name="LoginAdd" Text="Введите Логин" 
-                     Foreground="Gray" Background="AliceBlue"
+                     
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
                      Margin="3.5"
                      GotFocus="LoginAdd_GotFocus" LostFocus="LoginAdd_LostFocus"/>
             <TextBox Name="PasswordAdd" Text="Введите Пароль" 
-                     Foreground="Gray" Background="AliceBlue"
+                    
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
                      Margin="3.5"
                      GotFocus="PasswordAdd_GotFocus" LostFocus="PasswordAdd_LostFocus"/>
 
         </StackPanel>
-        <Button x:Name="ConfirmAddUser" Content="Добавить" FontSize="20" FontWeight="DemiBold" Grid.Row="1" IsDefault="True"
-                Foreground="Aqua" Background="LightYellow" BorderBrush="Gray"
+        <Button x:Name="ConfirmAddUser" Content="Добавить" FontSize="18" FontWeight="DemiBold" Grid.Row="1" IsDefault="True"
+                
                 Width="160" Height="40"  HorizontalAlignment="Center" Click="ConfirmAddUser_Click"/>
 
     </Grid>
