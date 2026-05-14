@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,7 +40,7 @@ namespace WpfAppCarSharing
             //НЕПОЛНЫЙ КОД ДЛЯ ТЕСТА
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("заполните поля");
+                MessageBox.Show("Введите логин  и пароль!");
                 return;
             }
             else
@@ -90,6 +91,10 @@ namespace WpfAppCarSharing
             }
         }
 
+       
+        
+        
+        
         //СОЗДАНИЕ CAPTCHA
         private void LoadPuzzle()
         {
@@ -143,6 +148,8 @@ namespace WpfAppCarSharing
 
 
         }
+
+       
     }
 }
 

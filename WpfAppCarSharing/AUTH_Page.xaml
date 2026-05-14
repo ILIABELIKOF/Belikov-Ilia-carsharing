@@ -89,6 +89,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
         <Style TargetType="Border">
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Background" Value="White"/>
@@ -100,6 +101,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+
     </Page.Resources>
 
 
@@ -186,6 +189,6 @@
 
         <Button x:Name="GetApiButton" Content="API"  Grid.Row="3" Grid.Column="1" 
                FontSize="15"
-                 Click="GetApiButton_Click" />
+                 Click="GetApiButton_Click"  Margin="0.5"/>
     </Grid>
 </Page>

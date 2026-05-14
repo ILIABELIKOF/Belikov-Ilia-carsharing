@@ -26,6 +26,7 @@ namespace WpfAppCarSharing
             InitializeComponent();
             //StartTransferSimulator();
         }
+ 
         private string newValue;
 
         /* 
@@ -41,11 +42,21 @@ namespace WpfAppCarSharing
                  * System.Threading.Thread.Sleep(1000);
          * } 
          */
-        private async Task SendResult_ClickAsync(object sender, RoutedEventArgs e)
+      
+ 
+
+        private void SendResultButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async Task TakeDataButton_ClickAsync(object sender, RoutedEventArgs e)
+
         {
             var client = new HttpClient();
             string url = "";
-            HttpResponseMessage response = await client.GetAsync(url);
+            HttpResponseMessage httpResponseMessage = await client.GetAsync(url);
+            HttpResponseMessage response = httpResponseMessage;
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();

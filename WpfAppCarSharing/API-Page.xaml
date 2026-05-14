@@ -61,7 +61,7 @@
 
 
         <StackPanel Grid.Column="0">
-            
+
             <Button x:Name="SendResult" Content="Отправить результат"  Width="290"  Height="30" Margin="3,110,3,0"
                     
                    />
@@ -69,6 +69,10 @@
             <Button x:Name="CatchData"  Content="Получить данные" Width="290"  Height="30" Margin="3,55,3,0" 
                     
                     />
+
+
+
+
             
         </StackPanel>
 
