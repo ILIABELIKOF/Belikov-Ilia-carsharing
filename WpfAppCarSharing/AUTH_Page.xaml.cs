@@ -50,11 +50,11 @@ namespace WpfAppCarSharing
                 return;
             }
 
-            //if (!isCaptchaPassed)
-            //{
-            //    MessageBox.Show("Сначала решите капчу!");
-            //    return;
-            //}
+            if (!isCaptchaPassed)
+            {
+                MessageBox.Show("Сначала решите капчу!");
+                return;
+            }
 
             try
             {
@@ -188,11 +188,7 @@ namespace WpfAppCarSharing
                 MessageBox.Show("Решено!");
                 isCaptchaPassed = PuzzleGrid.Children.OfType<Image>().Select((img, i) => expectedImageOrder[i] == (int)img.Tag).All(x => x);
             }
-            else
-            {
-                MessageBox.Show("Сначала решите капчу!");
-                return;
-            }
+          
             }
 
 

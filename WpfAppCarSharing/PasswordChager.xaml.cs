@@ -20,14 +20,69 @@ namespace WpfAppCarSharing
     /// </summary>
     public partial class PasswordChager : Page
     {
+        private readonly int ID;
         public PasswordChager()
         {
             InitializeComponent();
         }
-
+         //НЕ ПРОВЕРЕНО!!!
         private void ConfirmNewPassword_Click(object sender, RoutedEventArgs e)
-        { 
-            //ЗАГЛУШКА
+        { string oldPasw = OldPassword.Password;
+          string newPasw = NewPassword.Password;
+          string NewConfPasw = RepeatNewPassword.Password;
+
+
+
+            if (string.IsNullOrEmpty(oldPasw))
+            {
+                MessageBox.Show("Введите Старый пароль!");
+                return;
+
+            }
+            else if (string.IsNullOrEmpty(newPasw) || oldPasw == newPasw)
+            {
+                MessageBox.Show("Придумайте Новый пароль!");
+                return;
+
+            }
+            else if (string.IsNullOrEmpty(NewConfPasw) || NewConfPasw == newPasw)
+            {
+                MessageBox.Show("Новые Пароли не совпадают!");
+                return;
+
+
+
+            }
+            else
+            {
+                try
+                {
+                    using (var context = new CarSharingEntities())
+                    {
+                        var ChangedPAswUser = context.System_Accounts.FirstOrDefault(u => u.id == ID);
+                        if (ChangedPAswUser != null)
+                        {
+                            
+
+                        };
+
+
+                        context.SaveChanges();
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при загрузке данных пользователя: {ex.Message}");
+                }
+
+
+
+
+
+            }
+
             PageNavigator.frm.Navigate(new AdminPage());
         }
         

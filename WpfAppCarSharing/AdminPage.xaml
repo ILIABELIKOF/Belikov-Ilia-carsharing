@@ -156,6 +156,7 @@
                       SelectionMode="Single" 
                       Margin="0">
                 <DataGrid.Columns>
+                    <DataGridTextColumn  IsReadOnly="True" Header="N" Binding="{Binding idUser}"/>
                     <DataGridTextColumn  Header="Фамилия" Binding="{Binding Last_Name}"  />
                     <DataGridTextColumn  Header="Имя" Binding="{Binding First_Name}"  />
                     <DataGridTextColumn  Header="Адрес" Binding="{Binding Adres}"  />
@@ -170,28 +171,28 @@
 
         <Button x:Name="ToAdd" Content="Добавить Нового Пользователя" FontSize="15" FontWeight="DemiBold" Grid.Row="1" 
                 HorizontalAlignment="Left" VerticalAlignment="Center"
-                Width="250" Height="40"
+                Width="240" Height="40"
                
-                Margin="15,0" Click="ToAdd_Click"/>
+                Margin="150,0,0,0" Click="ToAdd_Click"/>
 
         <Button x:Name="ForUnban" Content="Разблокировать Пользователя" FontSize="15" FontWeight="DemiBold" Grid.Row="1" 
                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="250" Height="40"
+                Width="240" Height="40"
                 
-                Margin="0,0" Click="ForUnban_Click"/>
+                Margin="250,0,0,0" Click="ForUnban_Click"/>
 
         <Button x:Name="ChangePasw" Content="Сменить пароль"  FontSize="15" FontWeight="DemiBold" FontStyle="Oblique" Grid.Row="1" 
                 HorizontalAlignment="Right" VerticalAlignment="Center"
-                Width="125" Height="21"
-        
-                Margin="0,16,10,0" Click="ChangePasw_Click"/>
+                Width="120" Height="21"
+                
+                Margin="0,16,20,0" Click="ChangePasw_Click"/>
 
 
         <Button x:Name="ConfirmChanges" Content="Принять"  FontSize="15" FontWeight="DemiBold"  Grid.Row="1" 
-                HorizontalAlignment="Center" VerticalAlignment="Center"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
                 Width="125" Height="40"
 
-                Margin="390,0,0,0" Click="ConfirmChanges_Click" />
+                Margin="10,0,0,0" Click="ConfirmChanges_Click" />
 
 
     </Grid>

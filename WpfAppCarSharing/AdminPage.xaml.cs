@@ -28,7 +28,7 @@ namespace WpfAppCarSharing
 
         public class DisplayItems 
         {
-        
+            public int idUser { get; set; }
             public string Last_Name { get; set; }
             public string First_Name { get; set; }
             public string Adres { get; set; }
@@ -57,6 +57,7 @@ namespace WpfAppCarSharing
                     userList.Add(new DisplayItems
                     {
                         // Данные берутся из таблицы Users согласно схеме
+                        idUser = user.id,
                         Last_Name = user.Last_Name ?? "",
                         First_Name = user.First_Name ?? "",
                         Adres = user.Adres ?? "",
@@ -77,8 +78,8 @@ namespace WpfAppCarSharing
         }
         
         private void ToAdd_Click(object sender, RoutedEventArgs e)
-        {    
-            PageNavigator.frm.Navigate(new AddUser())
+        {
+            PageNavigator.frm.Navigate(new AddUser());
         
         }
 
@@ -124,8 +125,9 @@ namespace WpfAppCarSharing
                     {
                         foreach (var displayUser in updatedUsers)
                         {
-                            var dbUser = db.Users.FirstOrDefault();
-                            
+                            var dbUser = db.Users
+                                .Include("System_Accounts")
+                                .FirstOrDefault(u => u.id == displayUser.idUser);
                             if (dbUser != null)
                             {
                                 dbUser.Last_Name = displayUser.Last_Name;
@@ -133,6 +135,12 @@ namespace WpfAppCarSharing
                                 dbUser.Adres = displayUser.Adres;
                                 dbUser.Phone_Number = displayUser.Phone_Number;
                                 dbUser.INN = displayUser.INN;
+                                var account = dbUser.System_Accounts.FirstOrDefault();
+                                if (account != null)
+                                {
+                                    account.IsBlock = displayUser.IsBlock;
+
+                                }
                             }
                         }
 

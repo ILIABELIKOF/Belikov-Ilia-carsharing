@@ -25,11 +25,49 @@ namespace WpfAppCarSharing
             InitializeComponent();
         }
 
+
+
         private void ConfirmAddUser_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();//заглушка
-        }
+            try
+            {
+                AddUserToDataBase();
+                MessageBox.Show("Пользователь успешно добавлен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearFields();
+                PageNavigator.frm.Navigate(new AdminPage());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении пользователя: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
+            }
+        }
+        private void AddUserToDataBase() 
+        {
+
+            using (var context = new CarSharingEntities()) 
+            {
+                var addedUser = new User
+                {
+                    First_Name = FirstNameAdd.Text.Trim(),
+                    Last_Name = LastNameAdd.Text.Trim(),
+                    Phone_Number = PhoneNumber.Text.Trim(), 
+                    Adres = Adres.Text.Trim(),
+                    INN = string.IsNullOrEmpty(INN.Text) ? (int?)null : int.Parse(INN.Text)
+                    // Если TextBox пустой — записываем null, иначе — конвертируем в int
+
+                };
+            
+                context.Users.Add(addedUser);
+                context.SaveChanges();
+            
+            
+            }
+        
+        
+        
+        
+        }
 
 
 
@@ -113,13 +151,45 @@ namespace WpfAppCarSharing
             }
         }
 
-        private void INN_GotFocus(object sender, RoutedEventArgs e)
-        { 
+
+
+
+
+        //РАБОТА С ЗАПОЛНЕНИЕМ INT В ПОЛЕ ИНН
         
-            if (string.IsNullOrEmpty())
-        
+
+        private void INN_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.Text, 0);//Возвращение введенного значения если символ численный
         }
 
+
+        //Блокировка вставки текста, содержащего буквы (через Ctrl+V или контекстное меню)
+        private void INN_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string text = (string)e.DataObject.GetData(typeof(string));
+
+                if (!text.All(char.IsDigit))
+                {
+                    e.CancelCommand();
+
+                }
+
+            }
+            else { e.CancelCommand(); }
+        }
+
+        private void ClearFields()
+        {
+            FirstNameAdd.Clear();
+            LastNameAdd.Clear();
+            PhoneNumber.Clear();
+            Adres.Clear();
+            INN.Clear();
+
+        }
     }
 
 }

@@ -115,6 +115,7 @@
         
         
         <StackPanel Margin="0,0,150,0">
+            <TextBlock Text="Основные поля:"/>
             <TextBox Name="FirstNameAdd" Text="Введите Имя" 
                     
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
@@ -131,19 +132,22 @@
                      
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
                      Margin="3.5"
-                     GotFocus="PhoneNumber_GotFocus" LostFocus="PhoneNmber_LostFocus"/>
+                     GotFocus="PhoneNumber_GotFocus" LostFocus="PhoneNumber_LostFocus"/>
             
             <TextBox Name="Adres" Text="Введите Адрес" 
                     
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
                      Margin="3.5"
                      GotFocus="Adres_GotFocus" LostFocus="Adres_LostFocus"/>
-            
-            <TextBox Name="INN" Text="Введите ИНН" 
-        
+
+            <TextBlock Text="Дополнительно:" />
+            <TextBlock Text="Введите ИНН " FontSize="18" />
+            <TextBox Name="INN"  
                      Height="30" VerticalContentAlignment="Center" FontSize="18"
-                     Margin="3.5"
-                     GotFocus="INN_GotFocus" LostFocus="INN_LostFocus"/>
+                     Margin="3.5" MaxLength="9"
+                     PreviewTextInput="INN_PreviewTextInput" DataObject.Pasting="INN_Pasting"/>
+            <!--Выше приведены Дополнительные обработки заполнения int-->
+                    
             
 
         </StackPanel>
